@@ -1,7 +1,11 @@
 import React from "react";
 import { Camera, BriefcaseBusiness, UsersRound } from "lucide-react";
 
-export default function Footer({ light = false }) {
+export default function Footer({
+  light = false,
+  brand = "Deafingo",
+  description = "Empowering Deaf and Hard of Hearing communities through inclusion, advocacy, and support.",
+}) {
   const socials = [
     { label: "Instagram", icon: Camera, href: "#" },
     { label: "LinkedIn", icon: BriefcaseBusiness, href: "#" },
@@ -18,12 +22,12 @@ export default function Footer({ light = false }) {
         >
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className={`text-lg font-semibold ${light ? "text-slate-900" : "text-white"}`}>Deafingo</p>
+              <p className={`text-lg font-semibold ${light ? "text-slate-900" : "text-white"}`}>{brand}</p>
               <p className={`mt-2 max-w-md text-sm ${light ? "text-slate-600" : "text-slate-300"}`}>
-                Empowering Deaf and Hard of Hearing communities through inclusion, advocacy, and support.
+                {description}
               </p>
               <p className={`mt-4 text-xs ${light ? "text-slate-500" : "text-slate-400"}`}>
-                © {new Date().getFullYear()} Deafingo. All rights reserved.
+                © {new Date().getFullYear()} {brand}. All rights reserved.
               </p>
             </div>
 
