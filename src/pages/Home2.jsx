@@ -62,6 +62,17 @@ const categories = [
   { label: "Accessories", value: "accessories" },
 ];
 
+const radarParticles = [
+  { top: "16%", left: "14%", size: 6, delay: 0.1, duration: 2.8 },
+  { top: "22%", left: "70%", size: 5, delay: 0.4, duration: 3.1 },
+  { top: "36%", left: "84%", size: 4, delay: 0.2, duration: 2.6 },
+  { top: "42%", left: "20%", size: 5, delay: 0.8, duration: 3.3 },
+  { top: "58%", left: "63%", size: 6, delay: 0.5, duration: 2.9 },
+  { top: "64%", left: "31%", size: 4, delay: 0.3, duration: 2.7 },
+  { top: "74%", left: "78%", size: 5, delay: 0.9, duration: 3.4 },
+  { top: "80%", left: "48%", size: 4, delay: 0.6, duration: 2.5 },
+];
+
 const sectionReveal = {
   hidden: { opacity: 0, y: 38 },
   visible: {
@@ -77,6 +88,51 @@ const cardStagger = {
     transition: { staggerChildren: 0.1, delayChildren: 0.08 },
   },
 };
+
+function ShopContextSection() {
+  const items = [
+    {
+      title: "Quality Picks",
+      description: "Curated gadgets chosen for reliability, performance, and value across daily use.",
+    },
+    {
+      title: "Fast Support",
+      description: "Simple pre-sales guidance and clear communication to help you buy with confidence.",
+    },
+    {
+      title: "Smart Value",
+      description: "Competitive pricing and practical products that balance quality with affordability.",
+    },
+  ];
+
+  return (
+    <motion.section
+      variants={sectionReveal}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.25 }}
+      className="mx-auto mt-12 w-full max-w-7xl px-5 sm:px-8"
+    >
+      <div className="rounded-3xl border border-cyan-200/20 bg-[#0b3470]/45 p-6 backdrop-blur-xl sm:p-8">
+        <p className="inline-flex rounded-full border border-amber-300/25 bg-amber-300/10 px-4 py-1 text-[11px] tracking-[0.18em] text-amber-200 uppercase">
+          Why TechStore
+        </p>
+        <h3 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Better tech shopping with clarity and trust
+        </h3>
+
+        <div className="mt-7 grid gap-4 md:grid-cols-3">
+          {items.map((item) => (
+            <div key={item.title} className="rounded-2xl border border-cyan-200/20 bg-[#0c3a78]/50 p-5">
+              <p className="text-lg font-semibold text-amber-200">{item.title}</p>
+              <p className="mt-2 text-sm leading-relaxed text-slate-300">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </motion.section>
+  );
+}
 
 export default function Home2() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -138,16 +194,16 @@ export default function Home2() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-[#0a0f2c] text-white">
+    <main className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-[#03112b] via-[#062a5e] to-[#041a38] text-white">
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <motion.div style={{ y: blobOneY }} className="absolute -top-16 -left-16 h-72 w-72 rounded-full bg-amber-300/16 blur-[95px]" />
-        <motion.div style={{ y: blobTwoY }} className="absolute top-1/3 right-0 h-[24rem] w-[24rem] rounded-full bg-blue-400/18 blur-[110px]" />
-        <motion.div style={{ y: blobThreeY }} className="absolute bottom-0 left-1/2 h-72 w-[28rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.08),transparent_70%)]" />
+        <motion.div style={{ y: blobOneY }} className="absolute -top-16 -left-16 h-72 w-72 rounded-full bg-cyan-300/24 blur-[95px]" />
+        <motion.div style={{ y: blobTwoY }} className="absolute top-1/3 right-0 h-[24rem] w-[24rem] rounded-full bg-sky-400/24 blur-[110px]" />
+        <motion.div style={{ y: blobThreeY }} className="absolute bottom-0 left-1/2 h-72 w-[28rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.26),transparent_70%)]" />
         <motion.div
           style={{ y: meshY }}
           animate={{ opacity: [0.25, 0.4, 0.25] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(56,189,248,0.12),transparent_35%),radial-gradient(circle_at_80%_20%,rgba(250,204,21,0.1),transparent_32%),radial-gradient(circle_at_50%_75%,rgba(99,102,241,0.1),transparent_38%)]"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(34,211,238,0.22),transparent_35%),radial-gradient(circle_at_80%_20%,rgba(14,165,233,0.2),transparent_32%),radial-gradient(circle_at_50%_75%,rgba(59,130,246,0.2),transparent_38%)]"
         />
       </div>
 
@@ -160,30 +216,45 @@ export default function Home2() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#10183d]/70 shadow-[0_20px_60px_rgba(2,6,23,0.55)] backdrop-blur-xl"
+            className="relative overflow-hidden rounded-3xl border border-cyan-200/20 bg-[#0a2d63]/55 shadow-[0_22px_70px_rgba(6,28,75,0.55)] backdrop-blur-xl"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0a1135] via-[#090f2d] to-[#060a22]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#052050] via-[#0a3f84] to-[#06295a]" />
             <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(148,163,184,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.12)_1px,transparent_1px)] [background-size:42px_42px]" />
+            <div className="absolute top-1/2 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300/10" />
+            <div className="absolute top-1/2 left-1/2 h-[26rem] w-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300/20" />
+            <div className="absolute top-1/2 left-1/2 h-[18rem] w-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-200/25" />
+            <div className="absolute top-16 left-14 h-36 w-36 rounded-full border border-cyan-300/15" />
+            <div className="absolute top-20 left-[4.35rem] h-28 w-28 rounded-full border border-cyan-300/20" />
             <motion.div
               animate={{ rotate: [0, 360] }}
-              transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-              className="absolute top-1/2 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300/20"
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              className="absolute top-1/2 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[conic-gradient(from_0deg,rgba(56,189,248,0.22),transparent_25%,transparent_100%)] blur-sm"
             />
             <motion.div
-              animate={{ rotate: [360, 0] }}
-              transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
-              className="absolute top-1/2 left-1/2 h-[20rem] w-[20rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-amber-300/25"
-            />
-            <motion.div
-              animate={{ x: ["-110%", "120%"] }}
+              animate={{ rotate: [0, 360] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "linear" }}
-              className="absolute top-0 h-full w-28 bg-[linear-gradient(90deg,transparent,rgba(56,189,248,0.2),transparent)] blur-md"
+              className="absolute top-10 left-8 h-44 w-44 rounded-full bg-[conic-gradient(from_0deg,rgba(56,189,248,0.22),transparent_22%,transparent_100%)] blur-[1px]"
             />
-            <motion.div
-              animate={{ y: ["-100%", "120%"] }}
-              transition={{ duration: 5.5, repeat: Infinity, ease: "linear" }}
-              className="absolute left-0 h-20 w-full bg-[linear-gradient(180deg,transparent,rgba(250,204,21,0.12),transparent)] blur-sm"
-            />
+            {radarParticles.map((dot, idx) => (
+              <motion.span
+                key={idx}
+                initial={{ opacity: 0.25, scale: 0.85 }}
+                animate={{ opacity: [0.25, 0.85, 0.25], scale: [0.85, 1.15, 0.85] }}
+                transition={{
+                  duration: dot.duration,
+                  delay: dot.delay,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute rounded-full bg-cyan-200 shadow-[0_0_16px_rgba(103,232,249,0.9)]"
+                style={{
+                  top: dot.top,
+                  left: dot.left,
+                  width: `${dot.size}px`,
+                  height: `${dot.size}px`,
+                }}
+              />
+            ))}
             <motion.div
               animate={{ opacity: [0.3, 0.55, 0.3] }}
               transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
@@ -234,7 +305,7 @@ export default function Home2() {
         viewport={{ once: true, amount: 0.2 }}
         className="mx-auto mt-12 flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-5 sm:px-8"
       >
-        <div className="flex flex-wrap gap-2 rounded-full border border-white/10 bg-white/10 p-2 backdrop-blur-xl">
+        <div className="flex flex-wrap gap-2 rounded-full border border-cyan-200/20 bg-[#0b3470]/45 p-2 backdrop-blur-xl">
           {categories.map((cat) => {
             const active = activeCategory === cat.value;
             return (
@@ -258,10 +329,12 @@ export default function Home2() {
           })}
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-white/10 px-4 py-2 text-sm text-slate-100 backdrop-blur-xl">
+        <div className="rounded-xl border border-cyan-200/20 bg-[#0b3470]/45 px-4 py-2 text-sm text-slate-100 backdrop-blur-xl">
           🛒 Items: <span className="font-semibold">{totalQty}</span> | Total: <span className="font-semibold">${totalPrice}</span>
         </div>
       </motion.section>
+
+      <ShopContextSection />
 
       <motion.section
         id="products"
@@ -295,12 +368,12 @@ export default function Home2() {
         className="mx-auto mb-20 w-full max-w-4xl px-5 sm:px-8"
       >
         <h2 className="text-center text-3xl font-semibold text-white sm:text-4xl">Contact Us</h2>
-        <div className="mt-8 rounded-3xl border border-white/10 bg-white/10 p-6 shadow-[0_18px_50px_rgba(2,6,23,0.5)] backdrop-blur-xl sm:p-8">
+        <div className="mt-8 rounded-3xl border border-cyan-200/20 bg-[#0b3470]/45 p-6 shadow-[0_18px_50px_rgba(2,6,23,0.5)] backdrop-blur-xl sm:p-8">
           <div className="grid gap-4 sm:grid-cols-[100px_1fr_1fr]">
             <select
               value={form.salutation}
               onChange={(e) => setForm((prev) => ({ ...prev, salutation: e.target.value }))}
-              className="h-12 rounded-xl border border-white/15 bg-[#10183d]/70 px-3 text-slate-100 outline-none focus:border-amber-300/60"
+              className="h-12 rounded-xl border border-cyan-200/20 bg-[#0b3d80]/55 px-3 text-slate-100 outline-none focus:border-cyan-300/60"
             >
               <option>Mr.</option>
               <option>Ms.</option>
@@ -309,25 +382,25 @@ export default function Home2() {
             <input
               value={form.firstName}
               onChange={(e) => setForm((prev) => ({ ...prev, firstName: e.target.value }))}
-              className="h-12 rounded-xl border border-white/15 bg-[#10183d]/70 px-3 text-slate-100 outline-none placeholder:text-slate-400 focus:border-amber-300/60 focus:shadow-[0_0_0_2px_rgba(250,204,21,0.12)]"
+              className="h-12 rounded-xl border border-cyan-200/20 bg-[#0b3d80]/55 px-3 text-slate-100 outline-none placeholder:text-slate-300 focus:border-cyan-300/60 focus:shadow-[0_0_0_2px_rgba(34,211,238,0.16)]"
               placeholder="First Name*"
             />
             <input
               value={form.lastName}
               onChange={(e) => setForm((prev) => ({ ...prev, lastName: e.target.value }))}
-              className="h-12 rounded-xl border border-white/15 bg-[#10183d]/70 px-3 text-slate-100 outline-none placeholder:text-slate-400 focus:border-amber-300/60 focus:shadow-[0_0_0_2px_rgba(250,204,21,0.12)]"
+              className="h-12 rounded-xl border border-cyan-200/20 bg-[#0b3d80]/55 px-3 text-slate-100 outline-none placeholder:text-slate-300 focus:border-cyan-300/60 focus:shadow-[0_0_0_2px_rgba(34,211,238,0.16)]"
               placeholder="Last Name*"
             />
           </div>
           <p className="mt-2 text-sm text-rose-500">{form.firstName || form.lastName ? nameError : ""}</p>
 
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            <div className="flex h-12 items-center overflow-hidden rounded-xl border border-white/15 bg-[#10183d]/70">
-              <span className="border-r border-white/15 px-3 text-slate-400">+91</span>
+            <div className="flex h-12 items-center overflow-hidden rounded-xl border border-cyan-200/20 bg-[#0b3d80]/55">
+              <span className="border-r border-cyan-200/20 px-3 text-slate-300">+91</span>
               <input
                 value={form.mobile}
                 onChange={(e) => setForm((prev) => ({ ...prev, mobile: e.target.value.replace(/\D/g, "").slice(0, 10) }))}
-                className="h-full w-full bg-transparent px-3 text-slate-100 outline-none placeholder:text-slate-400"
+                className="h-full w-full bg-transparent px-3 text-slate-100 outline-none placeholder:text-slate-300"
                 placeholder="Mobile Number*"
               />
             </div>
@@ -335,7 +408,7 @@ export default function Home2() {
               type="email"
               value={form.email}
               onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
-              className="h-12 rounded-xl border border-white/15 bg-[#10183d]/70 px-3 text-slate-100 outline-none placeholder:text-slate-400 focus:border-amber-300/60 focus:shadow-[0_0_0_2px_rgba(250,204,21,0.12)]"
+              className="h-12 rounded-xl border border-cyan-200/20 bg-[#0b3d80]/55 px-3 text-slate-100 outline-none placeholder:text-slate-300 focus:border-cyan-300/60 focus:shadow-[0_0_0_2px_rgba(34,211,238,0.16)]"
               placeholder="Email ID*"
             />
           </div>
@@ -345,7 +418,7 @@ export default function Home2() {
             value={form.message}
             onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
             placeholder="Message (optional)"
-            className="mt-4 h-28 w-full rounded-xl border border-white/15 bg-[#10183d]/70 p-3 text-slate-100 outline-none placeholder:text-slate-400 focus:border-amber-300/60 focus:shadow-[0_0_0_2px_rgba(250,204,21,0.12)]"
+            className="mt-4 h-28 w-full rounded-xl border border-cyan-200/20 bg-[#0b3d80]/55 p-3 text-slate-100 outline-none placeholder:text-slate-300 focus:border-cyan-300/60 focus:shadow-[0_0_0_2px_rgba(34,211,238,0.16)]"
           />
 
           <div className="mt-6 text-center">

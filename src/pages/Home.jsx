@@ -407,6 +407,56 @@ function AboutDetailsSection() {
   );
 }
 
+function ImpactContextSection() {
+  const points = [
+    {
+      title: "Who We Support",
+      description:
+        "Deaf, Hard of Hearing, families, schools, and workplaces seeking practical inclusion and stronger communication outcomes.",
+    },
+    {
+      title: "How We Work",
+      description:
+        "Lived-experience leadership, tailored mentoring, advocacy guidance, and collaborative partnerships built around real community needs.",
+    },
+    {
+      title: "Why It Matters",
+      description:
+        "Inclusive environments improve confidence, participation, and wellbeing by ensuring Deaf voices are respected and understood.",
+    },
+  ];
+
+  return (
+    <section className="py-18 sm:py-22">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.8, ease }}
+          className="rounded-3xl border border-white/15 bg-white/8 p-7 backdrop-blur-xl sm:p-10"
+        >
+          <p className="inline-flex rounded-full border border-amber-300/25 bg-amber-300/10 px-4 py-1 text-[11px] tracking-[0.18em] text-amber-200 uppercase">
+            Why Deafingo
+          </p>
+          <h3 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            A community-led platform built for meaningful inclusion
+          </h3>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {points.map((point) => (
+              <div key={point.title} className="rounded-2xl border border-white/10 bg-[#10183d]/65 p-5">
+                <p className="text-lg font-semibold text-amber-200">{point.title}</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-300">{point.description}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   const { scrollY, scrollYProgress } = useScroll();
   const progressScaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 28, restDelta: 0.001 });
@@ -443,6 +493,7 @@ export default function Home() {
       <Navbar dark />
       <div className="relative">
         <HeroSection />
+        <ImpactContextSection />
         <ServicesSection />
         <AboutQuoteCTA aboutImageY={aboutImageY} />
         <AboutDetailsSection />

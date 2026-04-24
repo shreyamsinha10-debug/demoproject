@@ -22,7 +22,7 @@ export default function Navbar({ dark = true, brand = "Deafingo" }) {
                 `transition ${isActive ? "text-amber-300" : dark ? "text-slate-300 hover:text-white" : "text-slate-600 hover:text-slate-900"}`
               }
             >
-              Home 1
+              Deafingo
             </NavLink>
             <NavLink
               to="/home2"
@@ -30,7 +30,7 @@ export default function Navbar({ dark = true, brand = "Deafingo" }) {
                 `transition ${isActive ? "text-amber-300" : dark ? "text-slate-300 hover:text-white" : "text-slate-600 hover:text-slate-900"}`
               }
             >
-              Home 2
+              TechStore
             </NavLink>
           </div>
 
